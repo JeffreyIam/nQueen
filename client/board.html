@@ -1,7 +1,7 @@
 <div ng-init="createBoard();"
   id="board1" style="width: 400px; display: inline-block"></div>
-
 <div>
+    {{solutionNum}}
   <div>
     <span>Board Size:
       <select name="mySelect" id="mySelect" ng-options="option.name for option in boardOption.availableOptions track by option.id" ng-model="boardOption.selectedOption" ng-change="createBoard(boardOption.selectedOption.value)">
@@ -19,7 +19,7 @@
 
   <div>
     <span>
-      Number of Solutions: {{solutionNum}}
+      Number of Solutions: {{solutions}}
     </span>
   </div>
 

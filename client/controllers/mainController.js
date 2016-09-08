@@ -10,7 +10,8 @@
   function mainController($scope) {
     window.loop;
     $scope.queenPuzzle = queenPuzzle;
-    $scope.solutionNum;
+    $scope.solutions;
+    $scope.solutionNum = 0;
     $scope.addQueen = addQueen;
     $scope.hasConflict = hasConflict;
     $scope.updateBoard = updateBoard;
@@ -42,6 +43,7 @@
       if(number === undefined) {
         number = 8;
       }
+      $scope.solutionNum = undefined;
       clearLoop();
       clearBoard();
       var board1 = ChessBoard('board1', cfg, number)
@@ -69,7 +71,7 @@
                           cfg.position[coordinate] = 'wQ';
                         });
                         board1 = ChessBoard('board1', cfg, boardSize);
-
+                        $scope.solutionNum = x + 1; console.log($scope.solutionNum);
                         if(++x < answer.length) solutionLoop(x, boardSize);
                       }, 1500);
       }
@@ -81,7 +83,7 @@
       if(chessPiece === 'q') answer = queenPuzzle(num.value, num.value);
       else if(chessPiece === 'r') answer = []; //ROOK ALGO HERE
 
-      $scope.solutionNum = answer.length || 'NEED TO CONNECT ROOK SOLUTION' ;
+      $scope.solutions = answer.length || 'NEED TO CONNECT ROOK SOLUTION' ;
 
       if(answer.length > 0){
         solutionLoop(0, num.value);
