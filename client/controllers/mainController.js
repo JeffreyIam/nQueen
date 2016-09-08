@@ -55,8 +55,12 @@
       clearTimeout(window.loop);
     }
 
-    function updateBoard(num) {
-      console.log('getting here');
+    function updateBoard(num, chessPiece) {
+      if(chessPiece !== 'q' &&  chessPiece !== 'r') {
+        console.log('error with selected chess piece:', chessPiece);
+        return;
+      }
+
       function solutionLoop (x, boardSize){
         window.loop = setTimeout(function(){
                         createBoard();
@@ -71,11 +75,13 @@
       }
 
       var board1 = ChessBoard('board1', cfg, num.value);
-      var answer = queenPuzzle(num.value, num.value);
+      var answer;
       var alphabet = ['a','b','c','d','e','f','g','h'];
-      var holder = {};
 
-      $scope.solutionNum = answer.length;
+      if(chessPiece === 'q') answer = queenPuzzle(num.value, num.value);
+      else if(chessPiece === 'r') answer = []; //ROOK ALGO HERE
+
+      $scope.solutionNum = answer.length || 'NEED TO CONNECT ROOK SOLUTION' ;
 
       if(answer.length > 0){
         solutionLoop(0, num.value);
