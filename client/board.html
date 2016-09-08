@@ -1,8 +1,24 @@
 <div id="board1" style="width: 400px; display: inline-block"></div>
 
 <div>
-  <p> Board Size: </p>
-  <select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ng-init="createBoard()" ng-change="updateBoard(data.selectedOption)">
-    </select>
+  <div>
+    <span>Board Size:
+      <select name="mySelect" id="mySelect" ng-options="option.name for option in boardOption.availableOptions track by option.id" ng-model="boardOption.selectedOption" ng-init="createBoard()" ng-change="updateBoard(boardOption.selectedOption)">
+      </select>
+    </span>
+  </div>
+
+  <div>
+    <span>Chess Piece:
+      <label><input type="radio" name="optradio">   Queen</label>
+      <label><input type="radio" name="optradio">   Rook</label>
+    </span>
+  </div>
+
+  <div>
+    <span>
+      Number of Solutions: {{ solutionNum}}
+    </span>
+  </div>
 </div>
 
