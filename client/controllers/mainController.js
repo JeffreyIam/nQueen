@@ -8,6 +8,7 @@
   mainController.$inject = ['$scope'];
 
   function mainController($scope) {
+    window.loop;
     $scope.queenPuzzle = queenPuzzle;
     $scope.solutionNum;
     $scope.addQueen = addQueen;
@@ -41,13 +42,44 @@
       if(number === undefined) {
         number = 8;
       }
+      clearLoop();
+      clearBoard();
       var board1 = ChessBoard('board1', cfg, number)
     }
 
+    function clearBoard() {
+      cfg.position = {};
+    }
+
+    function clearLoop() {
+      clearTimeout(window.loop);
+    }
+
     function updateBoard(num) {
+      console.log('getting here');
+      function solutionLoop (x, boardSize){
+        window.loop = setTimeout(function(){
+                        createBoard();
+                        answer[x].forEach(function(positionValue, index){
+                          var coordinate = alphabet[index] + (boardSize - positionValue);
+                          cfg.position[coordinate] = 'wQ';
+                        });
+                        board1 = ChessBoard('board1', cfg, boardSize);
+
+                        if(++x < answer.length) solutionLoop(x, boardSize);
+                      }, 1500);
+      }
+
       var board1 = ChessBoard('board1', cfg, num.value);
       var answer = queenPuzzle(num.value, num.value);
-      $scope.solutionNum = answer !== []? answer.length : 0;
+      var alphabet = ['a','b','c','d','e','f','g','h'];
+      var holder = {};
+
+      $scope.solutionNum = answer.length;
+
+      if(answer.length > 0){
+        solutionLoop(0, num.value);
+      }
     }
 
     function queenPuzzle(rows, columns) {
@@ -68,28 +100,6 @@
             newSolutions.push(solution.concat([newColumn]));
         }
       }
-//       if( newSolutions[0].length === columns) {
-
-//         var alphabet = ['a','b','c','d','e','f','g','h'];
-//         var holder = {};
-
-//         for(var i = 0; i < columns; i++) {
-
-//           holder[alphabet[i] + newSolutions[0][i]] =  "wQ"
-//           console.log(holder)
-
-//         }
-//         console.log(holder)
-
-// // {a1:"wQ",b3:"wQ",c0:"wQ",d2:"wQ",}
-
-
-//       cfg.position = holder;
-//       console.log(cfg)
-//       createBoard(columns)
-//       }
-
-      console.log(newSolutions);
       return newSolutions;
     }
 
@@ -103,7 +113,6 @@
       }
       return false;
     }
-
   }
 
 })();
