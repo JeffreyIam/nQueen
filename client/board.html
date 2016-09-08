@@ -1,3 +1,8 @@
 <div id="board1" style="width: 400px; display: inline-block"></div>
-<select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ng-init="createBoard()" ng-change="updateBoard(data.selectedOption)">
-  </select>
+
+<div>
+  <p> Board Size: </p>
+  <select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ng-init="createBoard()" ng-change="updateBoard(data.selectedOption)">
+    </select>
+</div>
+
