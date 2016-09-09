@@ -49,9 +49,9 @@
     var solutions = puzzle(n, n);
     var obj = {
       solutions: solutions,
-      solutionNum: solutions.length
+      solutionNum: solutions.length,
+      chessPiece: chessPiece
     }
     return obj;
   }
-
 })();

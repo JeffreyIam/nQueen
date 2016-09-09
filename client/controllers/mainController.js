@@ -5,15 +5,12 @@
     .module('theApp', ['ngRoute', 'config'])
     .controller('mainController', mainController);
 
-  mainController.$inject = ['$scope'];
+  mainController.$inject = ['$scope', '$http'];
 
-  function mainController($scope) {
+  function mainController($scope, $http) {
     window.loop;
-    $scope.queenPuzzle = queenPuzzle;
     $scope.solutions;
-    $scope.solutionNum = 0;
-    $scope.addQueen = addQueen;
-    $scope.hasConflict = hasConflict;
+    $scope.getSolution = getSolution;
     $scope.updateBoard = updateBoard;
     $scope.createBoard = createBoard;
     $scope.boardOption = {
@@ -38,7 +35,6 @@
 
     var piece = "";
 
-
     function createBoard(n) {
       var number = n;
       if (number === undefined) {
@@ -58,12 +54,27 @@
       clearTimeout(window.loop);
     }
 
+    function getSolution(piece, boardSize) {
+      console.log(piece,boardSize);
+      $http({
+        method: 'POST',
+        url: '/api/solve',
+        data: {chessPiece: piece, n: boardSize}
+      }).then(function success(res) {
+        console.log(res.data, 'success')
+        updateBoard(boardSize, res.data);
+      }, function error(res) {
+        console.log(res.data);
+      });
+    }
 
+    function updateBoard(num, dataObj) {
+      var board1 = ChessBoard('board1', cfg, num);
+      var answer = dataObj.solutions;
+      var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+      piece = dataObj.chessPiece;
 
-    function updateBoard(num, chessPiece) {
-      piece = chessPiece;
-
-      if (chessPiece !== 'q' && chessPiece !== 'r') {
+      if (dataObj.chessPiece !== 'q' && dataObj.chessPiece !== 'r') {
         console.log('error with selected chess piece:', chessPiece);
         return;
       }
@@ -73,10 +84,10 @@
           createBoard();
           answer[x].forEach(function(positionValue, index) {
             var coordinate = alphabet[index] + (boardSize - positionValue);
-            if (chessPiece === 'q') {
+            if (piece === 'q') {
               cfg.position[coordinate] = 'wQ';
             }
-            if (chessPiece === 'r') {
+            if (piece === 'r') {
               cfg.position[coordinate] = 'wR';
             }
           });
@@ -86,60 +97,11 @@
         }, 1500);
       }
 
-      var board1 = ChessBoard('board1', cfg, num.value);
-      var answer;
-      var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-
-      if (chessPiece === 'q') answer = queenPuzzle(num.value, num.value);
-      else if (chessPiece === 'r') answer = queenPuzzle(num.value, num.value);
-
-      $scope.solutions = answer.length || "No solution available.";
+      $scope.solutions = dataObj.solutionNum;
 
       if (answer.length > 0) {
-        solutionLoop(0, num.value);
+        solutionLoop(0, num);
       }
-    }
-
-    function queenPuzzle(rows, columns) {
-      if (rows <= 0) {
-        return [
-          []
-        ];
-      } else {
-        return addQueen(rows - 1, columns);
-      }
-    }
-
-    function addQueen(newRow, columns, prevSolution) {
-      var newSolutions = [];
-      var prev = queenPuzzle(newRow, columns);
-      for (var i = 0; i < prev.length; i++) {
-        var solution = prev[i];
-        for (var newColumn = 0; newColumn < columns; newColumn++) {
-          if (!hasConflict(newRow, newColumn, solution))
-            newSolutions.push(solution.concat([newColumn]));
-        }
-      }
-      return newSolutions;
-    }
-
-    function hasConflict(newRow, newColumn, solution) {
-      for (var i = 0; i < newRow; i++) {
-        if (piece === 'q') {
-          if (solution[i] == newColumn ||
-            solution[i] + i == newColumn + newRow ||
-            solution[i] - i == newColumn - newRow) {
-            return true;
-          }
-        } else {
-          if (
-            solution[i] == newColumn
-          ) {
-            return true;
-          }
-        }
-      }
-      return false;
     }
   }
 })();

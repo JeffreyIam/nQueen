@@ -1,6 +1,5 @@
 <div ng-init="createBoard();" id="board1" style="width: 40%"></div>
 <div>
-  {{solutionNum}}
   <div>
     <br>
     <span>Board Size:
@@ -20,6 +19,6 @@
     </span>
     </div>
 
-    <button ng-click="updateBoard(boardOption.selectedOption, chessPiece)">Solve!</button>
+    <button ng-click="getSolution(chessPiece, boardOption.selectedOption.value)">Solve!</button>
   </div>
 </div>
