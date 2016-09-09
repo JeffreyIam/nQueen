@@ -2,7 +2,7 @@
   "use strict";
 
   angular
-    .module('theApp', ['ngRoute', 'config'])
+    .module('theApp', [])
     .controller('mainController', mainController);
 
   mainController.$inject = ['$scope', '$http'];
