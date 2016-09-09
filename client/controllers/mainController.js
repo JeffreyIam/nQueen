@@ -36,6 +36,7 @@
     var piece = "";
 
     function createBoard(n) {
+
       var number = n;
       if (number === undefined) {
         number = 8;
@@ -82,6 +83,7 @@
           createBoard();
           answer[x].forEach(function(positionValue, index) {
             var coordinate = alphabet[index] + (boardSize - positionValue);
+
             if (piece === 'q') {
               cfg.position[coordinate] = 'wQ';
             }
