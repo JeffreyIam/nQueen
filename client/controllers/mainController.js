@@ -55,13 +55,11 @@
     }
 
     function getSolution(piece, boardSize) {
-      console.log(piece,boardSize);
       $http({
         method: 'POST',
         url: '/api/solve',
         data: {chessPiece: piece, n: boardSize}
       }).then(function success(res) {
-        console.log(res.data, 'success')
         updateBoard(boardSize, res.data);
       }, function error(res) {
         console.log(res.data);
