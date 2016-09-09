@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/'));
 
 app.post('/api/solve', function (req, res){
-  console.log(req.body);
   if( (req.body.chessPiece === 'q' || req.body.chessPiece === 'r') &&
     req.body.n >=2 && req.body.n <= 8){
     res.status(200).send(Solve.solve(req.body.chessPiece, req.body.n, req.body.chessPiece));
