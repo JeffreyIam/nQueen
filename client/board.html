@@ -1,24 +1,29 @@
-<div ng-init="createBoard();" id="board1" style="width: 40%"></div>
 <div>
-  <div>
+
+  <div ng-init="createBoard();" id="board1" style="height:40%;width:50%;margin:auto"></div>
+
+  <div style="width:50%;margin:auto">
     <br>
-    <span>Board Size:
+    <div>Board Size:
       <select name="mySelect" id="mySelect" ng-options="option.name for option in boardOption.availableOptions track by option.id" ng-model="boardOption.selectedOption" ng-change="createBoard(boardOption.selectedOption.value)">
       </select>
-    </span>
+    </div>
+
     <div>
       <span ng-init="chessPiece = 'q'">Chess Piece:
       <label><input type="radio" ng-model="chessPiece" value="q">   Queen</label>
       <label><input type="radio" ng-model="chessPiece" value="r">   Rook</label>
-    </span>
     </div>
 
     <div>
       <span>
-      Number of Solutions: {{solutions}}
-    </span>
+        Number of Solutions: {{solutions}}
+      </span>
     </div>
 
-    <button ng-click="getSolution(chessPiece, boardOption.selectedOption.value)">Solve!</button>
+    <div>
+      <button ng-click="getSolution(chessPiece, boardOption.selectedOption.value)">Solve!</button>
+    </div>
   </div>
+
 </div>

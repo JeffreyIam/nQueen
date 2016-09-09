@@ -359,10 +359,8 @@ header:after {
   }
 }
 header #logo-container {
-  float: left;
+  text-align: center;
   display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%;
 }
 header #logo-container:last-child {
   margin-right: 0;
@@ -476,10 +474,7 @@ header nav ul li a.bordered {
   clear: both;
 }
 #content section.intro {
-  max-width: 68em;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5em;
+  text-align:center;
 }
 #content section.intro:after {
   content: "";
@@ -523,7 +518,6 @@ header nav ul li a.bordered {
   margin-left: auto;
   margin-right: auto;
   padding-top: 2em;
-  padding-bottom: 5em;
 }
 #content section.row:after {
   content: "";
@@ -611,11 +605,11 @@ header nav ul li a.bordered {
   text-decoration: none;
 }
 #content .photo-grid a.col-1 {
-  width: 100%;
+  width: 20%;
+  width: calc(30% - 12px);
 }
 #content .photo-grid a.col-2 {
-  width: 49%;
-  width: calc(50% - 12px);
+  width: 100%;
 }
 #content .photo-grid a.col-3 {
   width: 32%;
