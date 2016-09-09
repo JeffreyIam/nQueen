@@ -3,7 +3,7 @@
 
   angular
     .module('theApp')
-    .directive('boarddirective', boardDirective)
+    .directive('boarddirective', boardDirective);
 
   function boardDirective() {
     return {
@@ -12,14 +12,4 @@
       controller: 'mainController'
     }
   }
-
-  // myAppConfig.$inject = ['$routeProvider'];
-
-  // function myAppConfig($routeProvider) {
-  //   $routeProvider
-  //     .when('/', {
-  //       templateUrl: '/board.html',
-  //       controller: 'mainController'
-  //     })
-  // }
 })();
