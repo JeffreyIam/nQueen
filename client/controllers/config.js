@@ -2,16 +2,24 @@
   "use strict";
 
   angular
-    .module('config', ['theApp'])
-    .config(myAppConfig)
+    .module('theApp')
+    .directive('boarddirective', boardDirective)
 
-  myAppConfig.$inject = ['$routeProvider'];
-
-  function myAppConfig($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: '/board.html',
-        controller: 'mainController'
-      })
+  function boardDirective() {
+    return {
+      restrict: 'E',
+      templateUrl: '/board.html',
+      controller: 'mainController'
+    }
   }
+
+  // myAppConfig.$inject = ['$routeProvider'];
+
+  // function myAppConfig($routeProvider) {
+  //   $routeProvider
+  //     .when('/', {
+  //       templateUrl: '/board.html',
+  //       controller: 'mainController'
+  //     })
+  // }
 })();
