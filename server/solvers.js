@@ -34,9 +34,7 @@
           return true;
         }
       } else {
-        if (
-          solution[i] == newColumn;
-        ) {
+        if (solution[i] == newColumn) {
           return true;
         }
       }
