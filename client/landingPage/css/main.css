@@ -642,4 +642,7 @@ header nav ul li a.bordered {
   opacity: 1;
 }
 
+.chessBoardContainer {
+  height: 640px;
+}
 /*# sourceMappingURL=main.css.map */

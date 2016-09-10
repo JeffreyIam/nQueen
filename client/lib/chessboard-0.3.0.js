@@ -1678,7 +1678,6 @@ function initDom() {
 
   // create the drag piece
   var draggedPieceId = createId();
-  $('body').append(buildPiece('wP', true, draggedPieceId));
   draggedPieceEl = $('#' + draggedPieceId);
 
   // get the border size

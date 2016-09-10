@@ -68,6 +68,7 @@
     }
 
     function updateBoard(num, dataObj) {
+      createBoard();
       var board1 = ChessBoard('board1', cfg, num);
       var answer = dataObj.solutions;
       var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
