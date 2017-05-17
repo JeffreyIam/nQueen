@@ -4,28 +4,23 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha server/test",
     "start": "node server/app.js"
   },
    "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
     "express-cors": "0.0.3",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.3.0",
-    "grunt-contrib-cssmin": "^0.9.0",
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "chai": "^3.2.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^2.3.2",
+    "supertest": "^1.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JeffreyIam/2016-06-n-queens.git"
+    "url": "git+https://github.com/N-queens/nQueen.git"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JeffreyIam/2016-06-n-queens/issues"
-  },
-  "homepage": "https://github.com/JeffreyIam/2016-06-n-queens#readme"
+  "license": "MIT",
+  "homepage": "https://github.com/N-queens/nQueen#readme"
 }

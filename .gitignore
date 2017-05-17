@@ -3,3 +3,7 @@ node_modules/
 
 #floo
 *.floo
+*.flooignore
+
+#logs
+npm-debug.log
